@@ -1,0 +1,132 @@
+{
+	"$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+	"type": "AdaptiveCard",
+	"version": "1.2",
+	"body": [
+		{
+			"type": "Container",
+			"spacing": "None",
+			"backgroundImage": "https://i.ytimg.com/vi/FPSMuO2RMiE/maxresdefault.jpg",
+			"minHeight": "150px",
+			"items": [
+				{
+					"type": "TextBlock",
+					"text": "Azure Blueprints Assignment Request",
+					"spacing": "None",
+					"size": "Large",
+					"weight": "Bolder",
+					"color": "Attention",
+					"horizontalAlignment": "Center"
+				}
+			]
+		},
+		{
+			"type": "Container",
+			"items": [
+				{
+					"type": "TextBlock",
+					"text": "Dear,",
+					"size": "Medium",
+					"wrap": true,
+					"weight": "Lighter"
+				},
+				{
+					"type": "TextBlock",
+					"text": "An Azure Blueprints assignment request has been created with number: @{triggerBody()?['varAzbpreqid']}",
+					"wrap": true,
+					"horizontalAlignment": "Left",
+					"spacing": "Small",
+					"weight": "Lighter"
+				},
+				{
+					"type": "TextBlock",
+					"text": "Please review the request and take the required steps to give feedback towards the requestor.",
+					"wrap": true,
+					"spacing": "None",
+					"weight": "Lighter"
+				},
+				{
+					"type": "TextBlock",
+					"text": "The IT - Team",
+					"spacing": "Small",
+					"weight": "Bolder"
+				}
+			],
+			"style": "accent",
+			"bleed": true
+		},
+		{
+			"type": "TextBlock",
+			"size": "Medium",
+			"weight": "Bolder",
+			"text": "Request Number: @{triggerBody()?['varAzbpreqid']}"
+		},
+		{
+			"type": "FactSet",
+			"facts": [
+				{
+					"title": "Requester: ",
+					"value": "@{variables('varRequester')}"
+				},
+				{
+					"title": "Environment location:",
+					"value": "@{variables('varLocation')}"
+				},
+				{
+					"title": "Cost Center:",
+					"value": "@{variables('varCC')}"
+				},
+				{
+					"title": "Owners:",
+					"value": "@{variables('varOwners')}"
+				},
+				{
+					"title": "Contributors:",
+					"value": "@{variables('varContributors')}"
+				},
+				{
+					"title": "Readers:",
+					"value": "@{variables('varReaders')}"
+				}
+			],
+			"spacing": "Medium",
+			"separator": true
+		}
+	],
+	"actions": [
+		{
+			"type": "Action.Submit",
+			"title": "Approve",
+			"style": "positive",
+			"data": {
+				"FeedbackStatus": "Approve"
+			}
+		},
+		{
+			"type": "Action.ShowCard",
+			"title": "Reject",
+			"style": "destructive",
+			"card": {
+				"type": "AdaptiveCard",
+				"$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+				"body": [
+					{
+						"type": "Input.Text",
+						"id": "RejectComments",
+						"placeholder": "Please specify an appropriate reason for rejection.",
+						"isMultiline": true
+					}
+				],
+				"actions": [
+					{
+						"type": "Action.Submit",
+						"title": "Send",
+						"data": {
+							"FeedbackStatus": "reject"
+						}
+					}
+				]
+			}
+		}
+	]
+}
