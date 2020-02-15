@@ -1,0 +1,142 @@
+{
+	"$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+	"version": "1.0",
+	"type": "AdaptiveCard",
+	"speak": "<s>Your request has been approved.</s>",
+	"body": [
+		{
+			"type": "Container",
+			"spacing": "None",
+			"backgroundImage": "https://i.ytimg.com/vi/FPSMuO2RMiE/maxresdefault.jpg",
+			"minHeight": "150px",
+			"items": [
+				{
+					"type": "TextBlock",
+					"text": "Azure Blueprints Assignment Request",
+					"spacing": "None",
+					"size": "Large",
+					"weight": "Bolder",
+					"color": "Attention",
+					"horizontalAlignment": "Center"
+				}
+			]
+		},
+		{
+			"type": "TextBlock",
+			"text": "Dear requester, ",
+			"separator": true
+		},
+		{
+			"type": "TextBlock",
+			"text": "Your request has been reviewed and answered. ",
+			"spacing": "None"
+		},
+		{
+			"type": "TextBlock",
+			"text": "Please check the information below.",
+			"spacing": "None"
+		},
+		{
+			"type": "ColumnSet",
+			"separator": true,
+			"columns": [
+				{
+					"type": "Column",
+					"width": 1,
+					"items": [
+						{
+							"type": "TextBlock",
+							"text": "Request Number",
+							"isSubtle": true
+						},
+						{
+							"type": "TextBlock",
+							"size": "ExtraLarge",
+							"color": "Accent",
+							"text": "@{triggerBody()?['varAzbpreqid']}",
+							"spacing": "None"
+						}
+					]
+				},
+				{
+					"type": "Column",
+					"width": "auto",
+					"items": [
+						{
+							"type": "TextBlock",
+							"text": "Status",
+							"horizontalAlignment": "Center"
+						},
+						{
+							"type": "Image",
+							"url": "https://smartscool.webnode.be/_files/200000011-b5cc2b6bfc/approved.png",
+							"size": "Large",
+							"spacing": "None"
+						}
+					]
+				},
+				{
+					"type": "Column",
+					"width": 1,
+					"items": [
+						{
+							"type": "TextBlock",
+							"horizontalAlignment": "Right",
+							"text": "Request Status",
+							"isSubtle": true
+						},
+						{
+							"type": "TextBlock",
+							"horizontalAlignment": "Right",
+							"size": "ExtraLarge",
+							"color": "Accent",
+							"text": "Deploying",
+							"spacing": "None"
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "ColumnSet",
+			"columns": [
+				{
+					"type": "Column",
+					"width": "stretch",
+					"items": [
+						{
+							"type": "TextBlock",
+							"text": "Responded by:",
+							"weight": "Bolder",
+							"spacing": "Medium"
+						},
+						{
+							"type": "TextBlock",
+							"text": "Respondstime",
+							"weight": "Bolder",
+							"spacing": "None"
+						}
+					]
+				},
+				{
+					"type": "Column",
+					"width": "stretch",
+					"items": [
+						{
+							"type": "TextBlock",
+							"text": "@{outputs('varResponderDisplayname')}",
+							"spacing": "None"
+						},
+						{
+							"type": "TextBlock",
+							"text": "@{outputs('varRespondstime')}",
+							"spacing": "None"
+						}
+					]
+				}
+			],
+			"bleed": true,
+			"separator": true
+		}
+	]
+}
